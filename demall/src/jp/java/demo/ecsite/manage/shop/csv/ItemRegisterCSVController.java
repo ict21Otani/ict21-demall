@@ -3,8 +3,8 @@ package jp.java.demo.ecsite.manage.shop.csv;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +14,12 @@ import jp.nib.ict21.ecsite.common.CommonServlet;
 
 /**
  * Servlet implementation class ItemRegisterCSVController
+ * @MultipartConfig(location="/tmp", maxFileSize=1048576)はアップロード先のフォルダ作る必要あり
+ * ワークスペース下～\Catalina\localhost\xxxxx（プロジェクト名）\tmp←config(上の行で指定)
  */
 @WebServlet("/itemregistcsv")
-public class ItemRegisterCSVController extends CommonServlet implements Servlet {
+@MultipartConfig(location="/tmp", maxFileSize=1048576)
+public class ItemRegisterCSVController extends CommonServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -36,8 +39,10 @@ public class ItemRegisterCSVController extends CommonServlet implements Servlet 
 
 		//リクエストからファイルを取り出す
 		ItemRegistCSVService service = new ItemRegistCSVService();
+
 		try {
-			service.excute(request);
+			String realPath=getServletContext().getRealPath("/WEB-INF/uploaded");
+			service.excute(request,realPath);
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

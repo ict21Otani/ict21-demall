@@ -42,7 +42,6 @@
 		</tr>
 
 	</table>
-	<input type='submit' value='登録する' />
 	<a href='index'>商品検索</a>へ
 	<br />
 </body>

@@ -25,9 +25,8 @@
 				<tr>
 					<td colspan='2'><input type='submit' value='ログイン' /></td>
 				</tr>
-
 			</table>
-			 <input type="checkbox" name='autologin' class='text' />次回から自動ログインする
+			 <div><input type="checkbox" name='autologin' class='text' />次回から自動ログインする</div>
 		</form>
 		<a href='userregist'>会員登録</a><br />
 	</body>

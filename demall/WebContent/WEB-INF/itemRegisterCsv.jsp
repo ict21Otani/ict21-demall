@@ -11,7 +11,7 @@
 <body>
 	<h3>登録する商品についてを入力してください。（全て必須入力です）</h3>
 	<br />
-	<form action='itemregistcsv' method='POST'>
+	<form action='itemregistcsv' method='POST' enctype="multipart/form-data">
 		 <input type="file" name="csv" accept=".csv" required>
   		<button type="submit">登録する</button>
 

@@ -10,7 +10,7 @@
 	<body>
 		<h3><c:out value="${user.name}" />さん、本当に退会しますか？</h3>
 		<form action='withdrawcommit' method='POST'>
-			<td colspan='2'><input type='submit' value='退会' /></td>
+			<td colspan="2"><input type='submit' value='退会' /></td>
 		</form>
 		<a href='index'>商品検索</a>へ<br />
 	</body>

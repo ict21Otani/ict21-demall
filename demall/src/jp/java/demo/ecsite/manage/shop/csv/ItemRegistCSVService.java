@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import jp.java.demall.common.constant.ConstParam;
 import jp.java.demall.dao.ItemsDAO;
@@ -29,10 +31,24 @@ public class ItemRegistCSVService {
 	 * @param request
 	 * @throws IOException
 	 * @throws SQLException
+	 * @throws ServletException
+	 * @param path uploadfileの保存先
 	 */
-	public List<Items> excute(HttpServletRequest request) throws IOException, SQLException {
+	public List<Items> excute(HttpServletRequest request ,String realPath) throws IOException, SQLException, ServletException {
 
-		String file = request.getParameter("csv");
+
+		Part part= request.getPart("csv");
+		//System.out.println(part.getSubmittedFileName());
+		//System.out.println(part.getHeader("Content-Disposition"));
+
+
+		 String name =part.getSubmittedFileName();
+	     part.write(realPath+ "/" + name);
+
+	   //ファイルパスとしてアップロードファイルを定義する
+	     String file =realPath+ "/" + name;
+
+
 		File csv = new File(file);
 
 		FileReader fr = new FileReader(csv);
@@ -51,7 +67,6 @@ public class ItemRegistCSVService {
 				if (text[0].equals("商品名") == false) {
 					//アイテムクラスに代入する用の変数
 					Items items = new Items();
-
 
 					//CSVの項目数＝商品テーブルのカラム数（現在）違う場合は入れない
 					if (text.length == ConstParam.CSV_MAX_LENGTH) {
@@ -73,7 +88,7 @@ public class ItemRegistCSVService {
 						dao.insertItems(items);
 
 						splitList.add(items);
-					}else {
+					} else {
 						//行数を記録
 
 						//項目数が違うことを7項目ではないことのメッセージセット
@@ -96,4 +111,5 @@ public class ItemRegistCSVService {
 		return splitList;
 
 	}
+
 }

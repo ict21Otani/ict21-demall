@@ -9,7 +9,8 @@
 		<link rel='stylesheet' type='text/css' href='style.css' />
 	</head>
 	<body>
-		<h3>ログインしてください。</h3>
+		<h1>ショップ管理者ログイン</h1>
+		<h2>ログインしてください。</h2>
 		<br />
 		<c:if test="${loginfailed =='1'}"><h4>ID,パスワードが間違っているか登録されていません。</h4></c:if>
 		<form action='shoplogin' method='POST'>
