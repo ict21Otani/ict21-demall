@@ -128,7 +128,7 @@ public class SearchResultService {
 		}
 
 		//最低１ページ＋増加分を返す
-		return 1 + (int)(cnt / (ConstParam.COUNT_ONEPAGE_ITEMS+0.5));// (cnt / (ConstParam.COUNT_ONEPAGE_ITEMS + 1));
+		return 1 + (int)((cnt+1) / (ConstParam.COUNT_ONEPAGE_ITEMS));
 
 	}
 

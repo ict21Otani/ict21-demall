@@ -87,7 +87,7 @@ public class LoginService extends CommonService {
 				}
 
 			}
-			System.out.println(userId + ":" + password);
+
 
 			UserDAO dao = new UserDAO();
 
