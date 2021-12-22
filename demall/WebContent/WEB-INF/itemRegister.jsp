@@ -21,11 +21,12 @@
 						<span style="color: red">※商品名は255文字までです。</span>
 						<br>
 					</c:if>商品名</th>
-				<td><input type='text' name='name' class='text' value="${name}" /></td>
+				<td><input type='text' name='name' class='text' value="${name}"
+					required /></td>
 			</tr>
 			<tr>
 				<th>種類</th>
-				<td><select name="category" id="category">
+				<td><select name="category" id="category" required>
 						<option value="1">帽子</option>
 						<option value="2">鞄</option>
 				</select></td>
@@ -39,7 +40,7 @@
 						<br>
 					</c:if> 製造元</th>
 				<td><input type='text' name='manufacturer'
-					value="${manufacture}" /></td>
+					value="${manufacture}" required /></td>
 			</tr>
 			<tr>
 				<th><c:if test="${colornull== '1'}">
@@ -50,14 +51,15 @@
 						<br>
 					</c:if>色</th>
 				<td><input type='text' name='color' class='text'
-					value="${color}" /></td>
+					value="${color}" required /></td>
 			</tr>
 			<tr>
 				<th><c:if test="${stocknull== '1'}">
 						<span style="color: red">※在庫を入力してください</span>
-						<br></c:if>在庫</th>
+						<br>
+					</c:if>在庫</th>
 				<td><input type='text' name='stock' class='text'
-					value="${stock}" /></td>
+					value="${stock}" required /></td>
 			</tr>
 			<tr>
 				<th><c:if test="${pricenull== '1'}">
@@ -68,7 +70,7 @@
 						<br>
 					</c:if>価格</th>
 				<td><input type='text' name='price' class='text'
-					value="${price}" /></td>
+					value="${price}" required /></td>
 			</tr>
 			<tr>
 				<th>レコメンド</th>
