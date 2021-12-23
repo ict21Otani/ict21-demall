@@ -58,7 +58,7 @@
 						<span style="color: red">※在庫を入力してください</span>
 						<br>
 					</c:if>在庫</th>
-				<td><input type='text' name='stock' class='text'
+				<td><input type='number' name='stock' class='text'
 					value="${stock}" required /></td>
 			</tr>
 			<tr>
@@ -69,7 +69,7 @@
 						<span style="color: red">※価格は32文字までです。</span>
 						<br>
 					</c:if>価格</th>
-				<td><input type='text' name='price' class='text'
+				<td><input type='number' name='price' class='text'
 					value="${price}" required /></td>
 			</tr>
 			<tr>
