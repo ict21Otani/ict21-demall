@@ -21,7 +21,7 @@ import jp.nib.ict21.ecsite.common.dao.CommonDAO;
 public class ItemsDAO extends CommonDAO {
 
 	/***
-	 *カテゴリとキーワードで検索
+	 *カテゴリとキーワードで検索 ページなし
 	 *@retuen 検索結果
 	 *@param キーワード
 	 *@param  カテゴリ
@@ -68,6 +68,7 @@ public class ItemsDAO extends CommonDAO {
 		return list;
 
 	}
+
 
 	/***
 	 *全商品数取得（ページ数をカウントするため）
@@ -278,11 +279,7 @@ public class ItemsDAO extends CommonDAO {
 		return list;
 	}
 
-	/**
-	 * 最新のitemIdの取得　
-	 *
-	 *
-	 */
+
 	/***
 	 * 	//purchase_idを採番
 	 * @param con　コネクション
