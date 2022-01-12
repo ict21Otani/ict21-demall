@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.java.demall.common.constant.ConstFilePath;
 import jp.java.demall.search.ItemSearchController;
 
 @WebServlet("/search-api")
@@ -24,7 +25,10 @@ public class SearchApiXmlContoroller extends ItemSearchController {
 		try {
 			list = service.execute(req);
 		} catch (SQLException e) {
+			//エラー画面表示
 			e.printStackTrace();
+			resp.sendRedirect(ConstFilePath.ERROR_HTML);
+			return;
 		}
 		req.setAttribute("xml", list);
 
@@ -37,8 +41,9 @@ public class SearchApiXmlContoroller extends ItemSearchController {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//ポストで飛んでくる場合はフォーム画面がいる。
-
+		//TODO ポストで飛んでくる場合はフォーム画面がいる。
+		//POSTのリクエストを受け取ってdoGetに処理を委譲
+		doGet(req,resp);
 	}
 
 

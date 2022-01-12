@@ -43,25 +43,25 @@ public class SearchApiXmlService {
 		xmlList.add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
 		//二行目以降
-		xmlList.add("<items>");
+		xmlList.add(" <items>");
 
 		//繰り返し
 		for(Items item:itemList) {
-		xmlList.add("<Item>");
+		xmlList.add("  <Item>");
 		//ITEM名
-		xmlList.add("<name>"+item.getName()+"</name>");
+		xmlList.add("   <name>"+item.getName()+"</name>");
 		//価格
-				xmlList.add("<price>"+item.getPrice()+"</price>");
+				xmlList.add("   <price>"+item.getPrice()+"</price>");
 				//カテゴリ
-				xmlList.add("<category>"+item.getCategoryId()+"</category>");
+				xmlList.add("   <category>"+item.getCategoryId()+"</category>");
 
 		//閉じたぐ
-		xmlList.add("</Item>");
+		xmlList.add("  </Item>");
 		//繰り返し
 		}
 		//閉じたぐ
-		xmlList.add("</items>");
-		xmlList.add("</xml>");
+		xmlList.add(" </items>");
+		xmlList.add("</xml>");//一番親の閉じたぐ
 
 
 
