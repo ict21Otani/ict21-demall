@@ -1,6 +1,7 @@
 package jp.java.demall.search.api.xml;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class SearchApiXmlContoroller extends ItemSearchController {
 		SearchApiXmlService service = new SearchApiXmlService();
 		List<String> list=new ArrayList();
 		try {
+			//XMLの内容を取得
 			list = service.execute(req);
 		} catch (SQLException e) {
 			//エラー画面表示
@@ -30,13 +32,18 @@ public class SearchApiXmlContoroller extends ItemSearchController {
 			resp.sendRedirect(ConstFilePath.ERROR_HTML);
 			return;
 		}
-		req.setAttribute("xml", list);
+
+		 //出力設定をXML
+		 resp.setContentType("text/xml;charset=UTF-8");
+
+		 PrintWriter out = resp.getWriter();
+		 //XMLを一行ずつ出力する
+		 for( String xmlStr:list) {
+			 out.println(xmlStr);
+		 }
 
 
-
-	//main画面に戻る
-	String path="/WEB-INF/searchResultApi.jsp";
-	req.getRequestDispatcher(path).forward(req, resp);
+	
 	}
 
 	@Override

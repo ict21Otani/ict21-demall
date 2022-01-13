@@ -16,7 +16,7 @@ import jp.java.demall.search.Items;
  */
 public class SearchApiXmlService {
 /***
- * http://localhost:8080/demall/search?keyword='赤'&category=0&page=2
+ *
  * XMLを生成して返す。（文字列のリスト）
  * @param request
  * @return
@@ -36,33 +36,32 @@ public class SearchApiXmlService {
 		}
 
 		//XML用リスト
-		List<String> xmlList=new ArrayList();
+		List<String> xmlList=new ArrayList<String>();
 
-		//データをXML形式に直す
+		//データをXML形式に直す インデントはブラウザが勝手にやってくださるのでここで入れたりしない。
 		//最初の一行
 		xmlList.add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
 		//二行目以降
-		xmlList.add(" <items>");
+		xmlList.add("<Items>");
 
 		//繰り返し
 		for(Items item:itemList) {
-		xmlList.add("  <Item>");
+		xmlList.add("<Item>");
 		//ITEM名
-		xmlList.add("   <name>"+item.getName()+"</name>");
+		xmlList.add("<name>"+item.getName()+"</name>");
 		//価格
-				xmlList.add("   <price>"+item.getPrice()+"</price>");
+				xmlList.add("<price>"+item.getPrice()+"</price>");
 				//カテゴリ
-				xmlList.add("   <category>"+item.getCategoryId()+"</category>");
+				xmlList.add("<category>"+item.getCategoryId()+"</category>");
 
 		//閉じたぐ
-		xmlList.add("  </Item>");
+		xmlList.add("</Item>");
 		//繰り返し
 		}
 		//閉じたぐ
-		xmlList.add(" </items>");
-		xmlList.add("</xml>");//一番親の閉じたぐ
-
+		xmlList.add("</Items>");
+		//xmlList.add("</xml>");//一番親の閉じたぐ XMLに閉じタグいらない
 
 
 		return xmlList;
