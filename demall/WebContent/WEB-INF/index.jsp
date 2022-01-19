@@ -32,5 +32,7 @@
 		<a href='updateuser'>会員情報の変更</a>
 		<br />
 	</c:if>
+	<%--くじ引き バナー追加  --%>
+	<div><a href="kujibiki.html" ><img alt="くじ引きバナー" src="img/kujibiki.png"></a></div>
 </body>
 </html>
