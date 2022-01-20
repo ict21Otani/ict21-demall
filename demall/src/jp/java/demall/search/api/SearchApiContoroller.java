@@ -1,4 +1,4 @@
-package jp.java.demall.search.api.xml;
+package jp.java.demall.search.api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
