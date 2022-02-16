@@ -83,6 +83,7 @@
 		</table>
 	</form>
 	<a href='index'>商品検索</a>へ
+	<a href='itemeditsearch'>商品情報変更</a>へ
 	<a href='itemregistcsv'>CSV商品登録画面</a>へ
 	<br />
 </body>

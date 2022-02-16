@@ -79,6 +79,9 @@ public class SearchApiService {
 			} else if (type.equals("json")) {
 				List<String> jsonList = new ArrayList<String>();
 				int cnt = 0;//回数カウント用
+
+
+
 				//最初の行
 				jsonList.add("{ \"Item\":[");
 				if (itemList.size() > 0) {//一件以上帰ってきたとき
@@ -106,8 +109,8 @@ public class SearchApiService {
 					}
 				}
 				//最後の行
-				jsonList.add("]}");
-
+				jsonList.add("]");
+				jsonList.add("}");
 				//戻り値セット
 				returnList = jsonList;
 			}

@@ -1,4 +1,4 @@
-package jp.java.demo.ecsite.manage.shop.item;
+package jp.java.demo.ecsite.manage.shop.item.regist;
 
 import java.io.IOException;
 

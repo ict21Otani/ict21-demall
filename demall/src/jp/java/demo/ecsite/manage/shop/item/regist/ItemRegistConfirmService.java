@@ -1,7 +1,7 @@
 /**
  *
  */
-package jp.java.demo.ecsite.manage.shop.item;
+package jp.java.demo.ecsite.manage.shop.item.regist;
 
 import javax.servlet.http.HttpServletRequest;
 

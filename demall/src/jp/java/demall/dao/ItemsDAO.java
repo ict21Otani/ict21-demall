@@ -69,6 +69,44 @@ public class ItemsDAO extends CommonDAO {
 
 	}
 
+	/***
+	 *全商品取得（商品変更用）
+	 *カテゴリとキーワードで検索　全表示
+	 *@retuen 検索ヒット件数
+	 */
+	public List<Items>  findAll() throws SQLException {
+
+		List<Items> list = new ArrayList<>();
+		String sql = "SELECT  item_id, name, manufacturer, category_id, color, price, stock,recommended  FROM items";
+
+		try (Connection con = getConnection()) {
+			try (PreparedStatement ps = con.prepareStatement(sql)) {
+
+
+				ResultSet rs = ps.executeQuery();
+
+				//検索結果あったとき
+				while (rs.next()) {
+					Items item = new Items();
+
+					item.setItemId(rs.getInt("item_id"));
+					item.setName(rs.getString("name"));
+					item.setManufacturer(rs.getString("manufacturer"));
+					item.setCategoryId(rs.getInt("category_id"));
+					item.setColor(rs.getString("color"));
+					item.setPrice(rs.getInt("price"));
+					item.setRecommended(rs.getBoolean("recommended"));
+					item.setStock(rs.getInt("stock"));
+					list.add(item);
+				}
+			}
+		} catch (SQLException e) {
+			throw e;
+		}
+
+		return list;
+
+	}
 
 	/***
 	 *全商品数取得（ページ数をカウントするため）
