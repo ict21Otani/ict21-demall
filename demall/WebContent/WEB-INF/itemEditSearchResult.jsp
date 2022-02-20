@@ -4,14 +4,12 @@
 <html>
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-<title>商品一覧画面</title>
+<title>商品編集一覧画面</title>
 <link rel="stylesheet" href="https://newcss.net/new.min.css">
 <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
-	<h3>
-		編集する商品を選んでください。
-	</h3>
+	<h3>編集する商品を選んでください。</h3>
 	<br />
 	<table>
 		<tr>
@@ -23,10 +21,11 @@
 
 		<c:forEach var="item" items="${items}">
 			<tr>
-				<td><a href='itemedit?itemId=${item.itemId}' > <c:out value="${item.name}" /></a>
-				<!-- 	<c:if test="${item.recommended == true}">
-						 <sup>オススメ!</sup>
-					</c:if>-->
+				<td><a href='itemedit?itemId=${item.itemId}'>
+				 <c:out	value="${item.name}" /></a>
+					 <c:if test="${item.recommended == true}">
+							<sup>オススメ!</sup>
+					</c:if>
 				</td>
 				<td><c:out value="${item.color}" /></td>
 				<td><c:out value="${item.manufacturer}" /></td>
@@ -68,6 +67,7 @@
 	</c:choose>-->
 	<br />
 	<br />
+	<a href='index'>商品検索</a>へ
 	<a href='shoplogin'>商品登録</a>へ
 	<br />
 </body>

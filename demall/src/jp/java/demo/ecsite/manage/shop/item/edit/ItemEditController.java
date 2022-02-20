@@ -2,7 +2,6 @@ package jp.java.demo.ecsite.manage.shop.item.edit;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +16,8 @@ import jp.nib.ict21.ecsite.common.CommonServlet;
  * Servlet implementation class RegistItemController
  * アイテムの情報入力後登録で確認画面へ遷移
  */
-@WebServlet("/itemeditsearch")
-public class ItemEditSearchController extends CommonServlet {
+@WebServlet("/itemedit")
+public class ItemEditController extends CommonServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,13 +28,15 @@ public class ItemEditSearchController extends CommonServlet {
 			throws ServletException, IOException {
 
 		//ここでアイテムを検索して返す。
-		ItemEditSearchService service = new ItemEditSearchService();
-		List<Items> list=null;
-		String path = "/WEB-INF/itemEditSearchResult.jsp";
+		ItemEditService service = new ItemEditService();
+		Items item=null;
+		String path = "/WEB-INF/itemEdit.jsp";
+
 		try {
-			list=service.execute();
+			item=service.execute(request);
 			//検索結果リクエストにセット
-			request.setAttribute("items", list);
+			request.setAttribute("items", item);
+
 
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
@@ -51,26 +52,7 @@ public class ItemEditSearchController extends CommonServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/*Items items = new ItemRegistConfirmService().excute(request);
-		request.setAttribute("items", items);
-
-		SearchResultService service = new SearchResultService();
-		String category=service.getCategoryName(items.getCategoryId());
-
-		request.setAttribute("categoryName",category);
-
-		if (items.isRecommended()) {
-			request.setAttribute("recomend", "オススメにする");
-		} else {
-			request.setAttribute("recomend", "オススメにしない");
-		}
-		//セッションに登録情報セット
-		request.getSession().setAttribute("registItem", items);
-
-		//アイテム登録画面に遷移する。(実際は管理者ログイン アイテム登録ができたらログイン実装)
-		String path = "/WEB-INF/itemRegisterConfirm.jsp";
-		request.getRequestDispatcher(path).forward(request, response);
-		*/
+		doGet(request,response);
 
 	}
 

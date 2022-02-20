@@ -1,7 +1,7 @@
 /**
  *
  */
-package jp.java.demo.ecsite.manage.shop.item.regist;
+package jp.java.demo.ecsite.manage.shop.item.edit;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,10 +9,9 @@ import jp.java.demall.search.Items;
 
 /**
  * @author ta2ro
- * アイテム登録時の入力内容確認画面
  *
  */
-public class ItemRegistConfirmService {
+public class ItemEditConfirmService {
 
 	public Items excute(HttpServletRequest request) {
 

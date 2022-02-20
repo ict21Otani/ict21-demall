@@ -1,84 +1,87 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="jp.java.demall.search.Items"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-<title>会員登録</title>
+<title>商品編集画面</title>
 <link rel="stylesheet" href="https://newcss.net/new.min.css">
 <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
 	<h3>登録する商品についてを入力してください。（全て必須入力です）</h3>
 	<br />
-	<form action='itemregistconfirm' method='POST'>
+	<form action='itemreditconfirm' method='POST'>
+		<%
+			Items item = (Items) request.getAttribute("items");
+		%>
 		<table>
 			<tr>
-				<th><c:if test="${namenull== '1'}">
-						<span style="color: red">※商品名を入力してください</span>
-						<br>
-					</c:if> <c:if test="${name255== '1'}">
-						<span style="color: red">※商品名は255文字までです。</span>
-						<br>
-					</c:if>商品名</th><%-- 商品名か商品IDを一覧で選べるようにする。--%>
-				<td><input type='text' name='name' class='text' value="${name}"
-					required /></td>
+				<th>商品名</th>
+				<%-- 商品名か商品IDを一覧で選べるようにする。--%>
+				<td><input type='text' name='name' class='text'
+					value="${items.name}" required /></td>
 			</tr>
 			<tr>
 				<th>種類</th>
 				<td><select name="category" id="category" required>
-						<option value="1">帽子</option>
-						<option value="2">鞄</option>
+
+						<c:if test="${items.categoryId== '1'}">
+
+							<option value="1" selected>帽子</option>
+							<option value="2">鞄</option>
+						</c:if>
+						<c:if test="${items.categoryId== '2'}">
+							<option value="1">帽子</option>
+							<option value="2" selected>鞄</option>
+						</c:if>
 				</select></td>
 			</tr>
 			<tr>
-				<th><c:if test="${manunull== '1'}">
-						<span style="color: red">※製造元を入力してください</span>
-						<br>
-					</c:if> <c:if test="${manu255== '1'}">
-						<span style="color: red">※製造元は255文字までです。</span>
-						<br>
-					</c:if> 製造元</th>
+				<th>製造元</th>
 				<td><input type='text' name='manufacturer'
-					value="${manufacture}" required /></td>
+					value="${items.manufacturer}" required /></td>
 			</tr>
 			<tr>
-				<th><c:if test="${colornull== '1'}">
-						<span style="color: red">※色を入力してください</span>
-						<br>
-					</c:if> <c:if test="${color32== '1'}">
-						<span style="color: red">※色は32文字までです。</span>
-						<br>
-					</c:if>色</th>
+				<th>色</th>
 				<td><input type='text' name='color' class='text'
-					value="${color}" required /></td>
+					value="${items.color}" required /></td>
 			</tr>
 			<tr>
-				<th><c:if test="${stocknull== '1'}">
-						<span style="color: red">※在庫を入力してください</span>
-						<br>
-					</c:if>在庫</th>
+				<th>在庫</th>
 				<td><input type='number' name='stock' class='text'
-					value="${stock}" required /></td>
+					value="${items.stock}" required /></td>
 			</tr>
 			<tr>
-				<th><c:if test="${pricenull== '1'}">
+				<th>
+					<%--<c:if test="${pricenull== '1'}">
 						<span style="color: red">※価格を入力してください</span>
 						<br>
 					</c:if> <c:if test="${price32== '1'}">
 						<span style="color: red">※価格は32文字までです。</span>
 						<br>
-					</c:if>価格</th>
+					</c:if> --%>価格
+				</th>
 				<td><input type='number' name='price' class='text'
-					value="${price}" required /></td>
+					value="${items.price}" required /></td>
 			</tr>
 			<tr>
 				<th>レコメンド</th>
-				<td><input type="checkbox" name='recomended' class='text'
-					checked="checked" />オススメ商品にする</td>
+
+				<td><c:if test="${items.recommended== 'true'}">
+						<input type="checkbox" name='recomended' class='text'
+							checked="checked" />オススメ商品にする</td>
+
+				</c:if>
+				<c:if test="${items.recommended== 'false'}">
+
+					<input type="checkbox" name='recomended' class='text' />オススメ商品にする
+					</c:if>
+				</td>
 			</tr>
 			<tr>
-				<td colspan='2'><input type='submit' value='登録確認' /></td>
+				<td colspan='2'><input type='submit' value='変更する' /></td>
 			</tr>
 		</table>
 	</form>
