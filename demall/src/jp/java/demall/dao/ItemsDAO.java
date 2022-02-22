@@ -74,14 +74,13 @@ public class ItemsDAO extends CommonDAO {
 	 *カテゴリとキーワードで検索　全表示
 	 *@retuen 検索ヒット件数
 	 */
-	public List<Items>  findAll() throws SQLException {
+	public List<Items> findAll() throws SQLException {
 
 		List<Items> list = new ArrayList<>();
-		String sql = "SELECT  item_id, name, manufacturer, category_id, color, price, stock,recommended  FROM items";
+		String sql = "SELECT  item_id, name, manufacturer, category_id, color, price, stock,recommended  FROM items order by item_id";
 
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
-
 
 				ResultSet rs = ps.executeQuery();
 
@@ -151,10 +150,6 @@ public class ItemsDAO extends CommonDAO {
 
 	}
 
-
-
-
-
 	/***
 	 *商品詳細用　一件を返す。
 	 *@retuen 検索結果にヒットした商品データ
@@ -223,7 +218,7 @@ public class ItemsDAO extends CommonDAO {
 	 *@param 商品ID
 	 *@param 在庫数
 	 */
-	public void updateItemStock(int itemId ,int stock) throws SQLException {
+	public void updateItemStock(int itemId, int stock) throws SQLException {
 
 		String sql = "UPDATE items SET stock=? WHERE item_id=?";
 
@@ -239,9 +234,8 @@ public class ItemsDAO extends CommonDAO {
 			throw e;
 		}
 
-
-
 	}
+
 	/***
 	 *カテゴリとキーワードで検索　決まった件数で検索結果を返す
 	 *@retuen 検索結果
@@ -317,7 +311,6 @@ public class ItemsDAO extends CommonDAO {
 		return list;
 	}
 
-
 	/***
 	 * 	//purchase_idを採番
 	 * @param con　コネクション
@@ -353,12 +346,6 @@ public class ItemsDAO extends CommonDAO {
 	 *
 	 *
 	 * */
-	/***
-	 *　購入データ挿入
-	 * @param con
-	 * @param purchases
-	 * @throws SQLException
-	 */
 	public void insertItems(Items items) throws SQLException {
 
 		String sql = "INSERT INTO items( item_id, name, manufacturer, category_id, color, price, stock,  recommended) VALUES (?, ?,?,?,?, ?, ?,?)";
@@ -374,6 +361,43 @@ public class ItemsDAO extends CommonDAO {
 				ps.setInt(7, items.getStock());
 				ps.setBoolean(8, items.isRecommended());
 
+				ps.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw e;
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	/**
+	 *
+	 * 商品更新
+	 *
+	 *
+	 *
+	 * */
+	public void updateItems(Items items) throws SQLException {
+
+		String sql = "UPDATE items SET name=?, manufacturer=?, category_id=?, color=?, price=?, stock=?,  recommended=? where item_id=?";
+		try (Connection con = getConnection()) {
+			try (PreparedStatement ps = con.prepareStatement(sql)) {
+
+				ps.setString(1, items.getName());
+				ps.setString(2, items.getManufacturer());
+				ps.setInt(3, items.getCategoryId());
+				ps.setString(4, items.getColor());
+				ps.setInt(5, items.getPrice());
+				ps.setInt(6, items.getStock());
+
+				ps.setBoolean(7, items.isRecommended());
+
+				ps.setInt(8, items.getItemId());
+				System.out.println(ps);
 				ps.executeUpdate();
 
 			} catch (SQLException e) {

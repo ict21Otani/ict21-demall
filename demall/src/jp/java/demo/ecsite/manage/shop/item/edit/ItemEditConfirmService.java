@@ -15,6 +15,9 @@ public class ItemEditConfirmService {
 
 	public Items excute(HttpServletRequest request) {
 
+		Items sessionItem=(Items)request.getSession().getAttribute("editItem");
+
+
 		Items items = new Items();
 		items.setName(request.getParameter("name"));
 		items.setCategoryId(Integer.parseInt(request.getParameter("category")));
@@ -22,6 +25,7 @@ public class ItemEditConfirmService {
 		items.setStock(Integer.parseInt(request.getParameter("stock")));
 		items.setManufacturer(request.getParameter("manufacturer"));
 		items.setPrice(Integer.parseInt(request.getParameter("price")));
+		items.setItemId(sessionItem.getItemId());
 		//オススメチェックがないときはnull
 		if (request.getParameter("recomended")!=null) {
 			items.setRecommended(true);

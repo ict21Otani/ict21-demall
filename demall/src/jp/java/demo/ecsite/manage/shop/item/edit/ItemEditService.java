@@ -23,12 +23,12 @@ public class ItemEditService {
 	public Items execute(HttpServletRequest req) throws SQLException {
 
 		Items items = new Items();
-		ItemsDAO dao= new ItemsDAO();
-
-		int itemId=Integer.parseInt(req.getParameter("itemId"));
+		ItemsDAO dao = new ItemsDAO();
+		int itemId = Integer.parseInt(req.getParameter("itemId"));
+		items.setItemId(itemId);
 		try {
 			//アイテムを取得する
-			items=dao.findById(itemId);
+			items = dao.findById(items.getItemId());
 
 		} catch (SQLException e) {
 			throw e;

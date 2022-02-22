@@ -9,9 +9,9 @@
 <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
-	<h3>以下の情報で変更しますか？</h3>
+	<h3>以下の情報で変更しました</h3>
 	<br />
-	<form action='itemeditcommit' method='POST'>
+	<form action='itemregistcommit' method='POST'>
 		<table>
 			<tr>
 				<th>商品名</th>
@@ -41,9 +41,7 @@
 				<th>レコメンド</th>
 				<td><c:out value="${recomend}" /></td>
 			</tr>
-
 		</table>
-		<input type='submit' value='変更を確定する' />
 	</form>
 	<a href='index'>商品検索</a>へ
 	<a href='itemeditsearch'>商品変更一覧</a>へ

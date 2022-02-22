@@ -1,6 +1,7 @@
 package jp.java.demo.ecsite.manage.shop.item.edit;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +15,10 @@ import jp.nib.ict21.ecsite.common.CommonServlet;
 
 /**
  * Servlet implementation class RegistItemController
- * アイテムの情報入力後登録で確認画面へ遷移
+ * アイテムの変更した情報の表示
  */
-@WebServlet("/itemreditconfirm")
-public class ItemEditConfirmController extends CommonServlet {
+@WebServlet("/itemeditcommit")
+public class ItemEditCommitController extends CommonServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -35,7 +36,13 @@ public class ItemEditConfirmController extends CommonServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Items items = new ItemEditConfirmService().excute(request);
+		Items items = null;
+		try {
+			items = new ItemEditCommitService().excute(request);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		request.setAttribute("items", items);
 
 		SearchResultService service = new SearchResultService();
@@ -52,7 +59,7 @@ public class ItemEditConfirmController extends CommonServlet {
 		request.getSession().setAttribute("editItem", items);
 
 		//アイテム登録画面に遷移する。(実際は管理者ログイン アイテム登録ができたらログイン実装)
-		String path = "/WEB-INF/itemEditConfirm.jsp";
+		String path = "/WEB-INF/itemEditCommit.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 
 	}

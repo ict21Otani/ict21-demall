@@ -36,7 +36,8 @@ public class ItemEditController extends CommonServlet {
 			item=service.execute(request);
 			//検索結果リクエストにセット
 			request.setAttribute("items", item);
-
+			//セッションに登録情報セット
+			request.getSession().setAttribute("editItem", item);
 
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
