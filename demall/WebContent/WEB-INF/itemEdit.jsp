@@ -17,6 +17,7 @@
 			Items item = (Items) request.getAttribute("items");
 		%>
 		<table>
+
 			<tr>
 				<th>商品名</th>
 				<%-- 商品名か商品IDを一覧で選べるようにする。--%>
@@ -71,14 +72,12 @@
 
 				<td><c:if test="${items.recommended== 'true'}">
 						<input type="checkbox" name='recomended' class='text'
-							checked="checked" />オススメ商品にする</td>
+							checked="checked" />オススメ商品にする
 
-				</c:if>
-				<c:if test="${items.recommended== 'false'}">
+				</c:if> <c:if test="${items.recommended== 'false'}">
 
-					<input type="checkbox" name='recomended' class='text' />オススメ商品にする
-					</c:if>
-				</td>
+						<input type="checkbox" name='recomended' class='text' />オススメ商品にする
+					</c:if></td>
 			</tr>
 			<tr>
 				<td colspan='2'><input type='submit' value='変更する' /></td>

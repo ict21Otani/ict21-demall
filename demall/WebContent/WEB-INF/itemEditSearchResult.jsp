@@ -9,10 +9,11 @@
 <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
-	<h3>編集する商品を選んでください。</h3>
+	<h3>編集する商品の商品名をクリックしてください。</h3>
 	<br />
 	<table>
 		<tr>
+			<th>商品ID</th>
 			<th>商品名</th>
 			<th>商品の色</th>
 			<th>メーカー名</th>
@@ -21,6 +22,7 @@
 
 		<c:forEach var="item" items="${items}">
 			<tr>
+				<td><c:out	value="${item.itemId}" /></td>
 				<td><a href='itemedit?itemId=${item.itemId}'>
 				 <c:out	value="${item.name}" /></a>
 					 <c:if test="${item.recommended == true}">
@@ -35,36 +37,6 @@
 
 	</table>
 	<br />
-
-	<!--<c:choose>
-		<c:when test="${page == 1}">
-    	前へ
-  		</c:when>
-		<c:otherwise>
-		<a href='search?keyword=${keyword}&category=${category}&page=${page-1}'>前へ</a>
-		</c:otherwise>
-	</c:choose>
-	<c:forEach var="i" begin="1" end="${pagecount}" step="1">
-	<c:choose>
-	<%-- 表示ページと違う数字はリンクありにする--%>
-		<c:when test="${page != i}">
-    		<a href='search?keyword=${keyword}&category=${category}&page=${i}'>
-			<c:out	value="${i}" /></a>
-  		</c:when>
-		<c:otherwise>
-			<c:out	value="${i}" />
-		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-
-	<c:choose>
-		<c:when test="${page == pagecount}">
-    	次へ
-  		</c:when>
-		<c:otherwise>
-		<a href='search?keyword=${keyword}&category=${category}&page=${page+1}'>次へ</a>
-		</c:otherwise>
-	</c:choose>-->
 	<br />
 	<br />
 	<a href='index'>商品検索</a>へ
