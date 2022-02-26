@@ -7,6 +7,8 @@
 <title>商品検索</title>
 <link rel="stylesheet" href="https://newcss.net/new.min.css">
 <link rel='stylesheet' type='text/css' href='style.css' />
+
+<%@ include file="commonIconSetting.jsp" %><!-- Icon共通化jspの読みこみ -->
 </head>
 <body>
 	<h3>商品の検索を行います。</h3>
