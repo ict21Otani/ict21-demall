@@ -37,7 +37,7 @@ public class LoginController extends CommonServlet {
 		LoginService service = new LoginService();
 
 		try {
-			//cookieを使ってデータ取得してログイン
+			//cookieを使ってデータ取得してログイン(getの時のみの処理)
 			user = service.excuteAutoLogin(req);
 
 			//ユーザーがあったとき
@@ -75,23 +75,35 @@ public class LoginController extends CommonServlet {
 
 		//ユーザーデータを取得　ないときはnull
 		User user = null;
+
+
+
 		try {
 			//ユーザー情報取得
 			user = service.execute(req);
 			String path;
 
-			//user見つかってパスワードも一致
+			//user見つかってパスワードも一致,もしくはautoログイントークンがあった時
 			if (null != user) {
 				path = "/WEB-INF/index.jsp";
 				req.setAttribute("logined", "1");
 
+				//キートークン新規生成
+				String code=LoginService.getAutoLoginToken();
+
 				//autoログインを判定してある場合はcookieをセット
-				Cookie[] cookie = service.checkAutoLogin(req, user);
+				Cookie[] cookie = service.checkAutoLogin(req, user,code);
 				//copkie情報が帰ってきたときのみ、cookieを作成
 				if (null != cookie) {
 					for (Cookie ck : cookie) {
+						//cookieセットする
 						resp.addCookie(ck);
 					}
+				}else {
+					//cookieがなかった。
+					//TODO cookieのトークン情報を削除する処理(autoログイン解除１)
+					//TODO DBのトークン情報を削除する処理(autoログイン解除２)
+
 				}
 				setLoginUser(req, user);
 
